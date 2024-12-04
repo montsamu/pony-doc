@@ -191,7 +191,7 @@ The code which interacts with the database has to be placed within a database se
     @db_session
     def print_person_name(person_id):
         p = Person[person_id]
-        print p.name
+        print(p.name)
         # database session cache will be cleared automatically
         # database connection will be returned to the pool
 
@@ -294,7 +294,7 @@ If you don't want to get a list of objects, but need to iterate over the resulti
 
     >>> persons = select(p for p in Person if 'o' in p.name)
     >>> for p in persons:
-    ...     print p.name, p.age
+    ...     print(p.name, p.age)
     ...
     SELECT "p"."id", "p"."name", "p"."age"
     FROM "Person" "p"
@@ -337,7 +337,7 @@ With Pony you can also run aggregate queries. Here is an example of a query whic
 
 .. code-block:: python
 
-    >>> print max(p.age for p in Person)
+    >>> print(max(p.age for p in Person))
     SELECT MAX("p"."age")
     FROM "Person" "p"
 
@@ -354,7 +354,7 @@ To get an object by its primary key you need to specify the primary key value in
 .. code-block:: python
 
     >>> p1 = Person[1]
-    >>> print p1.name
+    >>> print(p1.name)
     John
 
 You may notice that no query was sent to the database. That happened because this object is already present in the database session cache. Caching reduces the number of requests that need to be sent to the database.
@@ -370,7 +370,7 @@ For retrieving the objects by other attributes, you can use the :py:meth:`Entity
     WHERE "name" = ?
     [u'Mary']
 
-    >>> print mary.age
+    >>> print(mary.age)
     22
 
 In this case, even though the object had already been loaded to the cache, the query still had to be sent to the database because the ``name`` attribute is not a unique key. The database session cache will only be used if we lookup an object by its primary or unique key.
