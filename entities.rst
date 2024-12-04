@@ -352,7 +352,7 @@ File models.py:
         name = Required(str, unique=True)
         price = Required(Decimal)
 
-
+**NOTE:** When using a mixin to provide entity hooks, the mixin class must go before db.Entity in the superclass list.
 
 .. _mapping_customization:
 
